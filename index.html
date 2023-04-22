@@ -37,7 +37,7 @@
     </header>
     <main>
       <h1>Projekt hinzufügen</h1>
-      <form name="climate" data-netlify-recaptcha="true" method="POST" data-netlify="true">
+      <form name="climate_v2" method="POST" enctype="multipart/form-data" data-netlify="true">
         <p>
           <label>Titel:<br /><input type="text" name="title" /></label>
         </p>
@@ -48,7 +48,7 @@
           <label>URL:<br /><input type="text" name="url" /></label>
         </p>
         <p>
-          <label>Bild (Dateiname):<br /><input type="text" name="image" /></label>
+          <label>Bild:<br /><input type="file" name="image" /></label>
         </p>
         <p>
           <span>Kategorie:</span><br />
@@ -305,7 +305,6 @@
             <td><strong>Distanzierend</strong></td>
           </tr>
         </table>
-        <div data-netlify-recaptcha="true"></div>
         <p>
           <button type="submit">Abschicken</button>
         </p>
