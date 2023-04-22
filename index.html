@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/Article">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Klimawandelkommunikation - Sammlung</title>
+  <style>
+    * {box-sizing: border-box;}
+    html, body { margin:0; padding:0; border:none; background-color:rgb(75,75,75); }
+    main { background: white; padding: 25px; margin: 50px auto; width: 100%; max-width:600px; }
+    header { color: white; padding: 0 25px 0 25px; margin: 50px auto 0px auto; width: 100%; max-width:600px; font-size: 24px; font-weight:bold; }
+    header span {font-weight:normal; font-size:18px;}
+    table {width:100%;}
+    table tr td { text-align:center; width: 20px; }
+    table tr {
+      display:flex;
+      flex-flow: row;
+    }
+    table tr td:last-child{
+      text-align: right;
+      flex-grow: 1;
+
+    }
+    table tr td:first-child{
+      text-align: left;
+      flex-grow: 1;
+    }
+    input[type="text"],
+    textarea { width:100%; }
+  </style>
+</head>
+<body>
+  <div id="wrapper">
+    <header>
+      <p><span>Sammlung</span><br />Klimawandelkommunikation</p>
+    </header>
+    <main>
+      <h1>Projekt hinzufügen</h1>
+      <form name="contact" enctype="multipart/form-data" method="POST" data-netlify="true">
+        <p>
+          <label>Titel:<br /><input type="text" name="title" /></label>
+        </p>
+        <p>
+          <label>Beschreibung:<br /><textarea style="height: 75px;" name="description"></textarea></label>
+        </p>
+        <p>
+          <label>URL:<br /><input type="text" name="url" /></label>
+        </p>
+        <p>
+          <label>Bild:<br /><input name="file" type="file"/></label>
+        </p>
+        <p>
+          <span>Kategorie:</span><br />
+          <label><input type="checkbox" name="category" value="Wissenschaftskommunikation" />Wissenschaftskommunikation</label><br />
+          <label><input type="checkbox" name="category" value="Aktivismus" />Aktivismus</label><br />
+          <label><input type="checkbox" name="category" value="Kunst" />Kunst</label><br />
+          <label><input type="checkbox" name="category" value="Medien" />Medien</label><br />
+          <label><input type="checkbox" name="category" value="Other" />Andere Kategorie:<br /><input type="text" name="category_other" /></label>
+        </p>
+        <h2>Dimensionen</h2>
+        <h3>Räumlich</h3>
+        <table>
+          <tr>
+            <td><strong>Global</strong></td>
+            <td><input type="radio" name="dimension_1" value="1" /></td>
+            <td><input type="radio" name="dimension_1" value="2" /></td>
+            <td><input type="radio" name="dimension_1" value="3" /></td>
+            <td><input type="radio" name="dimension_1" value="4" /></td>
+            <td><input type="radio" name="dimension_1" value="5" /></td>
+            <td><strong>Lokal</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Öffentlich</strong></td>
+            <td><input type="radio" name="dimension_2" value="1" /></td>
+            <td><input type="radio" name="dimension_2" value="2" /></td>
+            <td><input type="radio" name="dimension_2" value="3" /></td>
+            <td><input type="radio" name="dimension_2" value="4" /></td>
+            <td><input type="radio" name="dimension_2" value="5" /></td>
+            <td><strong>Privat</strong></td>
+          </tr>
+        </table>
+        <h3>Rechtlich</h3>
+        <table>
+          <tr>
+            <td><strong>Illegal</strong></td>
+            <td><input type="radio" name="dimension_3" value="1" /></td>
+            <td><input type="radio" name="dimension_3" value="2" /></td>
+            <td><input type="radio" name="dimension_3" value="3" /></td>
+            <td><input type="radio" name="dimension_3" value="4" /></td>
+            <td><input type="radio" name="dimension_3" value="5" /></td>
+            <td><strong>Legal</strong></td>
+          </tr>
+        </table>
+        <h3>Perspektive</h3>
+        <table>
+          <tr>
+            <td><strong>Positiv</strong><br />Utopie, Möglichkeiten, ...</td>
+            <td><input type="radio" name="dimension_4" value="1" /></td>
+            <td><input type="radio" name="dimension_4" value="2" /></td>
+            <td><input type="radio" name="dimension_4" value="3" /></td>
+            <td><input type="radio" name="dimension_4" value="4" /></td>
+            <td><input type="radio" name="dimension_4" value="5" /></td>
+            <td><strong>Negativ</strong><br />Dystopie, Hindernisse, Gefahren, Risiken, ...</td>
+          </tr>
+          <tr>
+            <td><strong>Mikro</strong></td>
+            <td><input type="radio" name="dimension_5" value="1" /></td>
+            <td><input type="radio" name="dimension_5" value="2" /></td>
+            <td><input type="radio" name="dimension_5" value="3" /></td>
+            <td><input type="radio" name="dimension_5" value="4" /></td>
+            <td><input type="radio" name="dimension_5" value="5" /></td>
+            <td><strong>Makro</strong></td>
+          </tr>
+        </table>
+        <h3>Methode</h3>
+        <table>
+          <tr>
+            <td><strong>Neutral</strong></td>
+            <td><input type="radio" name="dimension_6" value="1" /></td>
+            <td><input type="radio" name="dimension_6" value="2" /></td>
+            <td><input type="radio" name="dimension_6" value="3" /></td>
+            <td><input type="radio" name="dimension_6" value="4" /></td>
+            <td><input type="radio" name="dimension_6" value="5" /></td>
+            <td><strong>Beeinflussend</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Promotion</strong></td>
+            <td><input type="radio" name="dimension_7" value="1" /></td>
+            <td><input type="radio" name="dimension_7" value="2" /></td>
+            <td><input type="radio" name="dimension_7" value="3" /></td>
+            <td><input type="radio" name="dimension_7" value="4" /></td>
+            <td><input type="radio" name="dimension_7" value="5" /></td>
+            <td><strong>Prevention</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Handprint</strong><br />Negative Auswirkung (CO2-Fußabdruck)</td>
+            <td><input type="radio" name="dimension_8" value="1" /></td>
+            <td><input type="radio" name="dimension_8" value="2" /></td>
+            <td><input type="radio" name="dimension_8" value="3" /></td>
+            <td><input type="radio" name="dimension_8" value="4" /></td>
+            <td><input type="radio" name="dimension_8" value="5" /></td>
+            <td><strong>Footprint</strong><br />Positive Handlung (CO2-Reduktion)</td>
+          </tr>
+        </table>
+        <h3>Sozial</h3>
+        <table>
+          <tr>
+            <td><strong>Freiwilling</strong></td>
+            <td><input type="radio" name="dimension_9" value="1" /></td>
+            <td><input type="radio" name="dimension_9" value="2" /></td>
+            <td><input type="radio" name="dimension_9" value="3" /></td>
+            <td><input type="radio" name="dimension_9" value="4" /></td>
+            <td><input type="radio" name="dimension_9" value="5" /></td>
+            <td><strong>Zwang</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Kollektiv</strong></td>
+            <td><input type="radio" name="dimension_10" value="1" /></td>
+            <td><input type="radio" name="dimension_10" value="2" /></td>
+            <td><input type="radio" name="dimension_10" value="3" /></td>
+            <td><input type="radio" name="dimension_10" value="4" /></td>
+            <td><input type="radio" name="dimension_10" value="5" /></td>
+            <td><strong>Individuell</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Bottom-Up</strong></td>
+            <td><input type="radio" name="dimension_11" value="1" /></td>
+            <td><input type="radio" name="dimension_11" value="2" /></td>
+            <td><input type="radio" name="dimension_11" value="3" /></td>
+            <td><input type="radio" name="dimension_11" value="4" /></td>
+            <td><input type="radio" name="dimension_11" value="5" /></td>
+            <td><strong>Top-Down</strong></td>
+          </tr>
+        </table>
+        <h3>Zielgruppe</h3>
+        <table>
+          <tr>
+            <td><strong>Jung</strong></td>
+            <td><input type="radio" name="dimension_12" value="1" /></td>
+            <td><input type="radio" name="dimension_12" value="2" /></td>
+            <td><input type="radio" name="dimension_12" value="3" /></td>
+            <td><input type="radio" name="dimension_12" value="4" /></td>
+            <td><input type="radio" name="dimension_12" value="5" /></td>
+            <td><strong>Alt</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Gesellschaft</strong></td>
+            <td><input type="radio" name="dimension_13" value="1" /></td>
+            <td><input type="radio" name="dimension_13" value="2" /></td>
+            <td><input type="radio" name="dimension_13" value="3" /></td>
+            <td><input type="radio" name="dimension_13" value="4" /></td>
+            <td><input type="radio" name="dimension_13" value="5" /></td>
+            <td><strong>Industrie</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Bürger*innen</strong></td>
+            <td><input type="radio" name="dimension_14" value="1" /></td>
+            <td><input type="radio" name="dimension_14" value="2" /></td>
+            <td><input type="radio" name="dimension_14" value="3" /></td>
+            <td><input type="radio" name="dimension_14" value="4" /></td>
+            <td><input type="radio" name="dimension_14" value="5" /></td>
+            <td><strong>Entscheidungs-<br />träger*innen</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Unüberzeugt</strong></td>
+            <td><input type="radio" name="dimension_15" value="1" /></td>
+            <td><input type="radio" name="dimension_15" value="2" /></td>
+            <td><input type="radio" name="dimension_15" value="3" /></td>
+            <td><input type="radio" name="dimension_15" value="4" /></td>
+            <td><input type="radio" name="dimension_15" value="5" /></td>
+            <td><strong>Überzeugt</strong></td>
+          </tr>
+        </table>
+        <h3>Medium/Kommunikation</h3>
+        <table>
+          <tr>
+            <td><strong>Digital</strong></td>
+            <td><input type="radio" name="dimension_16" value="1" /></td>
+            <td><input type="radio" name="dimension_16" value="2" /></td>
+            <td><input type="radio" name="dimension_16" value="3" /></td>
+            <td><input type="radio" name="dimension_16" value="4" /></td>
+            <td><input type="radio" name="dimension_16" value="5" /></td>
+            <td><strong>Analog</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Partizipativ</strong></td>
+            <td><input type="radio" name="dimension_17" value="1" /></td>
+            <td><input type="radio" name="dimension_17" value="2" /></td>
+            <td><input type="radio" name="dimension_17" value="3" /></td>
+            <td><input type="radio" name="dimension_17" value="4" /></td>
+            <td><input type="radio" name="dimension_17" value="5" /></td>
+            <td><strong>Kommunikativ</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Interaktiv</strong></td>
+            <td><input type="radio" name="dimension_18" value="1" /></td>
+            <td><input type="radio" name="dimension_18" value="2" /></td>
+            <td><input type="radio" name="dimension_18" value="3" /></td>
+            <td><input type="radio" name="dimension_18" value="4" /></td>
+            <td><input type="radio" name="dimension_18" value="5" /></td>
+            <td><strong>Passiv</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Emotional</strong></td>
+            <td><input type="radio" name="dimension_19" value="1" /></td>
+            <td><input type="radio" name="dimension_19" value="2" /></td>
+            <td><input type="radio" name="dimension_19" value="3" /></td>
+            <td><input type="radio" name="dimension_19" value="4" /></td>
+            <td><input type="radio" name="dimension_19" value="5" /></td>
+            <td><strong>Informativ</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Intersektional</strong></td>
+            <td><input type="radio" name="dimension_20" value="1" /></td>
+            <td><input type="radio" name="dimension_20" value="2" /></td>
+            <td><input type="radio" name="dimension_20" value="3" /></td>
+            <td><input type="radio" name="dimension_20" value="4" /></td>
+            <td><input type="radio" name="dimension_20" value="5" /></td>
+            <td><strong>Monosektional</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Abstrakt</strong></td>
+            <td><input type="radio" name="dimension_21" value="1" /></td>
+            <td><input type="radio" name="dimension_21" value="2" /></td>
+            <td><input type="radio" name="dimension_21" value="3" /></td>
+            <td><input type="radio" name="dimension_21" value="4" /></td>
+            <td><input type="radio" name="dimension_21" value="5" /></td>
+            <td><strong>Konkret</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Poetisch/Künstl.</strong></td>
+            <td><input type="radio" name="dimension_22" value="1" /></td>
+            <td><input type="radio" name="dimension_22" value="2" /></td>
+            <td><input type="radio" name="dimension_22" value="3" /></td>
+            <td><input type="radio" name="dimension_22" value="4" /></td>
+            <td><input type="radio" name="dimension_22" value="5" /></td>
+            <td><strong>Wissenschaftl.</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Mono-Sensorisch</strong></td>
+            <td><input type="radio" name="dimension_23" value="1" /></td>
+            <td><input type="radio" name="dimension_23" value="2" /></td>
+            <td><input type="radio" name="dimension_23" value="3" /></td>
+            <td><input type="radio" name="dimension_23" value="4" /></td>
+            <td><input type="radio" name="dimension_23" value="5" /></td>
+            <td><strong>Multi-Sensorisch</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Groß</strong></td>
+            <td><input type="radio" name="dimension_24" value="1" /></td>
+            <td><input type="radio" name="dimension_24" value="2" /></td>
+            <td><input type="radio" name="dimension_24" value="3" /></td>
+            <td><input type="radio" name="dimension_24" value="4" /></td>
+            <td><input type="radio" name="dimension_24" value="5" /></td>
+            <td><strong>Klein</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Immersiv</strong></td>
+            <td><input type="radio" name="dimension_25" value="1" /></td>
+            <td><input type="radio" name="dimension_25" value="2" /></td>
+            <td><input type="radio" name="dimension_25" value="3" /></td>
+            <td><input type="radio" name="dimension_25" value="4" /></td>
+            <td><input type="radio" name="dimension_25" value="5" /></td>
+            <td><strong>Distanzierend</strong></td>
+          </tr>
+        </table>
+        <p>
+          <button type="submit">Abschicken</button>
+        </p>
+      </form>
+    </main>
+  </div>
+</body>
+</html>
