@@ -20,7 +20,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      env:
+      - env:
         APIKEY: ${{ secrets.APIKEY }}
         FORMID: ${{ secrets.FORMID }}
       - run: npm ci
