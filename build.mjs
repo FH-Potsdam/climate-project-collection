@@ -38,10 +38,12 @@ const run = async () => {
   for (let s = 0; s < submissions.length; s++) {
     const submission = submissions[s];
     if (!sync.includes(submission.id)) {
+      let img = '';
       if (submission.data.image) {
         try {
           const ext = submission.data.image.filename.split('.');
           await download(submission.data.image.url, './data/images/' + submission.id + '.' + ext[ext.length - 1]);
+          img = submission.data.image.url, submission.id + '.' + ext[ext.length - 1];
         } catch (error) {
           console.error(error);
         }
@@ -50,6 +52,8 @@ const run = async () => {
       delete submission.data.referrer;
       delete submission.data.user_agent;
       delete submission.data.ip;
+      submission.data.id = submission.id;
+      submission.img = img;
 
       data.push(submission.data);
       sync.push(submission.id);
