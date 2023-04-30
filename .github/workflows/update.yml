@@ -1,0 +1,29 @@
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+        - info
+        - warning
+        - debug
+  schedule:
+    - cron:  '0 * * * *'
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm ci
+      - run: npm run build
+      - run: |
+          git config --global user.name "sebastian-meier"
+          git config --global user.email "sebastian-meier@users.noreply.github.com"
+          git fsck
+          git status --porcelain | git add . && git commit -m "github-actions:update form submissions" && git push && echo 1 || echo 0

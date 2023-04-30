@@ -1,0 +1,23 @@
+{
+  "name": "climate-project-collection",
+  "version": "1.0.0",
+  "description": "climate project collection through netlify forms",
+  "main": "build.js",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FH-Potsdam/climate-project-collection.git"
+  },
+  "author": "sebastian-meier",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FH-Potsdam/climate-project-collection/issues"
+  },
+  "homepage": "https://github.com/FH-Potsdam/climate-project-collection#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "netlify": "^13.1.5"
+  }
+}
