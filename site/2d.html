@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html class="no-js" lang="{% if locale == 'en' %}en-US{% else %}de-DE{% endif %}">
+  <head>
+  	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klimaprojekte - Liste</title>
+    <style>
+      * { box-sizing: border-box; }
+      html, body {margin:0; padding:0; border: none;  font-family: Helvetica, Arial, sans-serif;}
+      #vis {
+        width: 100%;
+        height: calc(100vh - 30px);
+      }
+      #preview>img {
+        max-width:100%;
+      }
+
+      #preview table td:first-child {
+        text-align:right;
+      }
+
+      #preview span{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100px;
+        display: inline-block;
+      }
+
+      #preview {
+        padding-top:20px;
+      }
+
+      ul.tags, ul.tags li {
+        margin:0;padding:0;list-style: none;
+      }
+
+      ul.tags li {
+        display: inline-block;
+        font-size:12px;
+        color:white;
+        background-color:rgba(0,0,0,0.6);
+        border-radius: 10px;
+        padding: 5px 6px 2px 6px;
+        line-height:14px;
+        margin-right:3px;
+      }
+    </style>
+    <script src='https://cdn.plot.ly/plotly-2.20.0.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
+  </head>
+  <body>
+    <main>
+      <div id="form">
+        <select id="dim1"></select>
+        <select id="dim2"></select>
+        <button id="btn">Update</button>
+      </div>
+      <div id="vis"></div>
+      <div id="preview"></div>
+    </main>
+    <script>
+      const dimensions = [
+        {
+          group: "Räumlich",
+          items: [
+            {
+              key: "dimension_1",
+              min: "Global",
+              max: "Lokal"
+            },
+            {
+              key: "dimension_2",
+              min: "Öffentlich",
+              max: "Privat"
+            }
+          ]
+        },
+        {
+          group: "Rechtlich",
+          items: [
+            {
+              key: "dimension_3",
+              min: "Illegal",
+              max: "Legal"
+            }
+          ]
+        },
+        {
+          group: "Perspektive",
+          items: [
+            {
+              key: "dimension_4",
+              min: "Positiv",
+              max: "Negativ"
+            },
+            {
+              key: "dimension_5",
+              min: "Mikro",
+              max: "Makro"
+            }
+          ]
+        },
+        {
+          group: "Methode",
+          items: [
+            {
+              key: "dimension_6",
+              min: "Neutral",
+              max: "Beeinflussend"
+            },
+            {
+              key: "dimension_7",
+              min: "Promotion",
+              max: "Prevention"
+            },
+            {
+              key: "dimension_8",
+              min: "Handprint",
+              max: "Footprint"
+            }
+          ]
+        },
+        {
+          group: "Sozial",
+          items: [
+            {
+              key: "dimension_9",
+              min: "Freiwilling",
+              max: "Zwang"
+            },
+            {
+              key: "dimension_10",
+              min: "Kollektiv",
+              max: "Individuell"
+            },
+            {
+              key: "dimension_11",
+              min: "Bottom-Up",
+              max: "Top-Down"
+            }
+          ]
+        },
+        {
+          group: "Zielgruppe",
+          items: [
+            {
+              key: "dimension_12",
+              min: "Jung",
+              max: "Alt"
+            },
+            {
+              key: "dimension_13",
+              min: "Gesellschaft",
+              max: "Industrie"
+            },
+            {
+              key: "dimension_14",
+              min: "Bürger*innen",
+              max: "Entscheidungsträger*innen"
+            },
+            {
+              key: "dimension_15",
+              min: "Unüberzeugt",
+              max: "Überzeugt"
+            }
+          ]
+        },
+        {
+          group: "Medium/Kommunikation",
+          items: [
+            {
+              key: "dimension_16",
+              min: "Digital",
+              max: "Analog"
+            },
+            {
+              key: "dimension_17",
+              min: "Partizipativ",
+              max: "Kommunikativ"
+            },
+            {
+              key: "dimension_18",
+              min: "Interaktiv",
+              max: "Passiv"
+            },
+            {
+              key: "dimension_19",
+              min: "Emotional",
+              max: "Informativ"
+            },
+            {
+              key: "dimension_20",
+              min: "Intersektional",
+              max: "Monosektional"
+            },
+            {
+              key: "dimension_21",
+              min: "Abstrakt",
+              max: "Konkret"
+            },
+            {
+              key: "dimension_22",
+              min: "Poetisch/Künstl.",
+              max: "Wissenschaftl."
+            },
+            {
+              key: "dimension_23",
+              min: "Mono-Sensorisch",
+              max: "Multi-Sensorisch"
+            },
+            {
+              key: "dimension_24",
+              min: "Groß",
+              max: "Klein"
+            },
+            {
+              key: "dimension_25",
+              min: "Immersiv",
+              max: "Distanzierend"
+            }
+          ]
+        }
+      ];
+
+      const labels = {};
+      dimensions.forEach(d => {
+        d.items.forEach(i => {
+          labels[i.key] = i.min + " - " + i.max;
+        });
+      });
+
+      const dims = [
+        document.querySelector("#dim1"),
+        document.querySelector("#dim2")
+      ];
+
+      dimensions.forEach(d => {
+        dims.forEach(dim => {
+          const option = document.createElement("option");
+          option.setAttribute("disabled", "disabled");
+          option.innerHTML = "<strong>"  + d.group + "</strong>";
+          dim.append(option);
+        });
+        d.items.forEach(i => {
+          dims.forEach(dim => {
+            const option = document.createElement("option");
+            option.setAttribute("value", i.key);
+            option.innerHTML = i.min + " - " + i.max;
+            dim.append(option);
+          });
+        });
+      });
+
+      document.querySelector("#btn").addEventListener("click", () => {
+        setPlot(
+          document.querySelector("#dim1").value,
+          document.querySelector("#dim2").value
+        );
+      });
+
+      let gData;
+
+      const showPreview = (id) => {
+        const d = gData[id];
+        const ext = d.image.filename.split(".");
+        document.querySelector("#preview").innerHTML = `
+        <ul class="tags">${typeof d.category == "object" ? d.category.map((c) => `<li>${c}</li>`).join("") : `<li>${d.category}</li>`}</ul>
+        <h2>${d.title}</h2>
+        <a href="${d.url}">Projekt-Link</a><br />
+        <p>${d.description}</p>
+        <img src="../data/images/${d.id}.${ext[ext.length - 1]}" /><br />
+        <table>
+        ${dimensions.map(dim => {
+          return `<tr><th colspan="3">${dim.group}</th></tr>${dim.items.map(i => {
+            return `<tr><td><span>${i.min}</span></td><td class="ranger"><img src="./images/ranger-${d[i.key]}.png" /></td><td><span>${i.max}</span></td>`;
+          }).join("")}`;
+        }).join("")}
+        </table>
+        `;
+      };
+
+      fetch('../data/data.json')
+        .then(response => response.json())
+        .then(data => {
+          gData = data;
+        })
+        .catch(error => console.log(error));
+      
+      const setPlot = (dim1, dim2) => {
+        const x1 = [];
+        const y1 = [];
+        const text1 = [];
+
+        gData.forEach((d, di) => {
+          x1.push(d[dim1]);
+          y1.push(d[dim2]);
+          text1.push(d.title);
+        });
+
+        const trace1 = {
+          x:x1, y:y1,
+          text: text1,
+          mode: 'markers',
+          textposition: 'top center',
+          marker: {
+            size: 12,
+            line: {
+            color: 'rgba(217, 217, 217, 0.14)',
+            width: 0.5},
+            opacity: 0.8},
+          type: 'scatter2d'
+        };
+
+        console.log(labels[dim1]);
+
+        Plotly.newPlot('vis', [trace1], {scene:{
+          aspectmode:'cube',
+          xaxis: {
+            range: [1, 5],
+            nticks: 5,
+            title: labels[dim1]
+          },
+          yaxis: {
+            range: [1, 5],
+            nticks: 5,
+            title: labels[dim2]
+          }
+        }});
+
+        document.querySelector("#vis").on('plotly_click', function(data){
+          const p = data.points[0];
+          showPreview(p.pointNumber);
+        });
+      };
+    </script>
+  </body>
+</html>
