@@ -254,13 +254,16 @@
 
       const showPreview = (id) => {
         const d = gData[id];
-        const ext = d.image.filename.split(".");
+        let ext = false;
+        if ('image' in d && typeof d.image == "object" && 'filename' in d.image) {
+          ext = d.image.filename.split(".");
+        }
         document.querySelector("#preview").innerHTML = `
         <ul class="tags">${typeof d.category == "object" ? d.category.map((c) => `<li>${c}</li>`).join("") : `<li>${d.category}</li>`}</ul>
         <h2>${d.title}</h2>
         <a href="${d.url}">Projekt-Link</a><br />
         <p>${d.description}</p>
-        <img src="../data/images/${d.id}.${ext[ext.length - 1]}" /><br />
+        ${ext ? `<img src="../data/images/${d.id}.${ext[ext.length - 1]}" /><br />`: ""}
         <table>
         ${dimensions.map(dim => {
           return `<tr><th colspan="3">${dim.group}</th></tr>${dim.items.map(i => {
@@ -278,9 +281,15 @@
           const tbl = document.querySelector("#list table");
           data.forEach((d, di) => {
             const row = document.createElement("tr");
-            const ext = d.image.filename.split(".");
-            const img = document.createElement("img");
-            img.setAttribute("src", "../data/images/" + d.id + "." + ext[ext.length - 1]);
+            let ext = false;
+            let img;
+            if ('image' in d && typeof d.image == "object" && 'filename' in d.image) {
+              ext = d.image.filename.split(".");
+              img = document.createElement("img");
+              img.setAttribute("src", "../data/images/" + d.id + "." + ext[ext.length - 1]);
+            } else {
+              img = document.createElement("span");
+            }
             const td = document.createElement("td");
             td.append(img);
             row.append(td);
